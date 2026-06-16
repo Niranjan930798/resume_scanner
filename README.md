@@ -1,0 +1,33 @@
+<div align="center">
+  <p><img width="250" src="assets/mobile-ss1.png?raw=true"/></p>
+  <h1>Notify Me</h1>
+  <p>a simple app that lets you forward your text messages and/or call logs to your telegram chat.</p>
+</div>
+
+## Download
+
+You can find the latest version of APK under [Releases](https://github.com/i-ritesh).
+
+## Instructions
+
+- Create a Telegram account if you don't have one already, before proceeding to the next step.
+- Create a Telegram bot with the help of [Botfather](https://t.me/botfather).
+- Note down the token associated with the bot.
+  - Do not share this token with anyone.
+- Open your bot's chat and press the **START** button.
+  - This is important! Otherwise, the bot can't send you any notification.
+- With the help of [Chat ID Echo Bot](https://t.me/chat_id_echo_bot), note down your own Telegram user ID.
+- Open the Notify Me app, enter both the token & your user ID and save the settings.
+- Hola! All your messages/calls will be forwarded to your Telegram chat.
+- **Important** - Some devices prevent the app from running in background to optimize its battery. To override that, you can add Notify Abroad to the battery optimization exemptions.
+  - This can usually be done by changing the app's battery optimization setting to "Don't optimize" under Settings > Apps > All apps > Notify Abroad > Battery.
+  - Check [this link](https://www.popsci.com/diy/turn-off-battery-saver/) for more details.
+- Ensure that the device, this app is installed on, is charged and connected to the internet all the time.
+
+
+
+## Privacy Policy
+
+No analytics, no tracking, and no BS.
+
+This app merely acts as a relay between your device & [Telegram's](https://telegram.org) servers. Apart from that, the app does not do anything with your data. If you would like to read how Telegram processes your data, go [here](https://telegram.org/privacy?setln=en).

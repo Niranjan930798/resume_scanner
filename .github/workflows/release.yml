@@ -1,0 +1,51 @@
+name: Tagged Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    name: Generate APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.1
+      - name: Setup Java JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11.0.7
+          java-package: jdk
+          distribution: 'zulu'
+      - name: Assemble release APK
+        run: |
+          echo "$KEYS_PROPERTIES" >> app/keys.properties
+          gpg --quiet --batch --yes --decrypt --passphrase="$KEY_JKS" --output key.jks key.jks.gpg
+          bash ./gradlew assembleRelease
+        env:
+          KEYS_PROPERTIES: '${{ secrets.KEYS_PROPERTIES }}'
+          KEY_JKS: '${{ secrets.KEY_JKS }}'
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: notify-abroad
+          path: app/build/outputs/apk/release/app-release.apk
+
+  github-release:
+    name: GitHub release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download APK
+        uses: actions/download-artifact@v2
+        with:
+          name: notify-abroad
+          path: app-release
+      - uses: marvinpinto/action-automatic-releases@latest
+        name: Uploading to GitHub
+        with:
+          repo_token: '${{ secrets.GITHUB_TOKEN }}'
+          prerelease: false
+          files: |
+            app-release/notify-abroad.apk
